@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "REPLACE_WITH_YOUR_CONNECTION_STRING_OR_USE_UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "INPUT_CONTAINER": "msg-input",
+    "OUTPUT_CONTAINER": "eml-output",
+    "ARCHIVE_CONTAINER": "msg-archive",
+    "FAILED_CONTAINER": "msg-failed",
+    "MAX_FILE_SIZE_MB": "25"
+  }
+}

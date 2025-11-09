@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Azure Functions artifacts
+bin/
+obj/
+appsettings.json
+local.settings.json
+!local.settings.json.example
+
+# Python virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.kiro/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Azure Storage Emulator (Azurite)
+__azurite__/
+.python_packages/
+
+# Test files and temporary data
+*.msg
+*.eml
+test_*.py
+create_*.py
+simulate_*.py
+download_*.py
+get_*.py
+
+# Documentation (keep only essential docs)
+COPILOT_MASTER_PROMPT.txt
+GITHUB_COPILOT_PROMPTS.md
+COMPLETE_CODE_EXPLANATION.md
+COMPLETE_TEST_REPORT.md
+TESTING_SUMMARY.md
+TEST_RESULTS.md
+CONFIGURATION_SUMMARY.md
+FILE_IMPORTANCE_GUIDE.md
+ESSENTIAL_FILES_ONLY.md
+QUICK_RECREATION_GUIDE.md
+PROCESS_FLOW_VISUAL.md
+DOCUMENTATION_INDEX.md

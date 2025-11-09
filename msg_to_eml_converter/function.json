@@ -1,0 +1,12 @@
+{
+  "scriptFile": "../function_app.py",
+  "bindings": [
+    {
+      "name": "inputBlob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "msg-input/{name}",
+      "connection": "AzureWebJobsStorage"
+    }
+  ]
+}
