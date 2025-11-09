@@ -31,14 +31,24 @@ Thumbs.db
 __azurite__/
 .python_packages/
 
-# Test files and temporary data
+# Test data files
 *.msg
 *.eml
-test_*.py
-create_*.py
+
+# Temporary test scripts (exclude these)
+create_real_msg.py
+create_real_msg_and_convert.py
+create_and_convert.py
+create_test_msg.py
 simulate_*.py
 download_*.py
 get_*.py
+test_conversion.py
+
+# Keep important test scripts (include these)
+!test_upload.py
+!test_conversion_only.py
+!setup_containers.py
 
 # Documentation (keep only essential docs)
 COPILOT_MASTER_PROMPT.txt
