@@ -11,38 +11,33 @@ Monitors Azure Blob Storage for new MSG files and automatically:
 4. Archives original MSG file
 5. Handles errors gracefully with detailed logging
 
-## 🎯 What This Does
 
-1. **Watches** Azure Blob Storage for new MSG files
-2. **Validates** MSG file format
-3. **Converts** MSG to EML format
-4. **Uploads** EML to output container
-5. **Archives** original MSG file
-6. **Handles** errors gracefully
 
 ## 📁 Project Structure
 
 ```
 msg-to-eml-converter/
-├── function_app.py              # Main Azure Function entry point
-├── host.json                    # Azure Functions configuration
-├── requirements.txt             # Python dependencies
-├── local.settings.json.example  # Configuration template
+├── function_app.py                # Main Azure Function entry point
+├── host.json                      # Azure Functions configuration
+├── requirements.txt               # Python dependencies
+├── local.settings.json.example    # Configuration template
 │
 ├── services/
-│   ├── msg_converter.py         # MSG to EML conversion logic
-│   └── blob_storage.py          # Azure Blob Storage operations
+│   ├── msg_converter.py           # MSG to EML conversion logic
+│   └── blob_storage.py            # Azure Blob Storage operations
 │
 ├── utils/
-│   └── logging.py               # Logging configuration
+│   └── logging.py                 # Logging configuration
 │
 ├── models/
-│   └── conversion_models.py    # Data models
+│   └── conversion_models.py      # Data models
 │
 ├── msg_to_eml_converter/
-│   └── function.json            # Function binding configuration
+│   └── function.json              # Function binding configuration
 │
-└── setup_containers.py          # Setup script for blob containers
+├── setup_containers.py            # Setup script for blob containers
+├── test_conversion_only.py        # Test conversion without Azure Function
+└── test_upload.py                 # Test full workflow with blob storage
 ```
 
 ## 🚀 Quick Start
@@ -149,19 +144,51 @@ Configuration is managed through `local.settings.json` (not committed to git).
 
 ## 🧪 Testing
 
-1. **Get a real MSG file** from Microsoft Outlook:
-   - Open any email in Outlook
-   - File → Save As → Outlook Message Format (.msg)
+### Option 1: Test Conversion Only (No Azure Function needed)
 
-2. **Upload and test:**
+Test just the MSG to EML conversion logic:
+
+```bash
+python test_conversion_only.py your_email.msg
+```
+
+**What it does:**
+- Reads your MSG file
+- Converts to EML format
+- Shows preview of converted content
+- Saves EML file locally
+- No Azurite or Azure Function required
+
+**Perfect for:** Quick testing, debugging conversion issues, or when you just want to convert a file.
+
+### Option 2: Full End-to-End Test (With Azure Function)
+
+Test the complete workflow with blob storage:
+
+1. **Start Azurite and Azure Function** (see Quick Start above)
+
+2. **Run the test:**
    ```bash
    python test_upload.py your_email.msg
    ```
 
-3. **Check results:**
-   - Converted EML in `eml-output` container
-   - Original MSG in `msg-archive` container
-   - Function logs show conversion details
+**What it does:**
+- Uploads MSG to blob storage
+- Triggers Azure Function automatically
+- Waits for conversion
+- Shows results from all containers
+- Tests the complete production workflow
+
+**Perfect for:** Testing the full system, verifying blob triggers, checking error handling.
+
+### Getting a Test MSG File
+
+**From Microsoft Outlook:**
+1. Open any email in Outlook
+2. File → Save As → Outlook Message Format (.msg)
+3. Save to your project folder
+
+**Note:** You need a real MSG file from Outlook. Programmatically created files won't work with the `extract-msg` library.
 
 See [HOW_TO_TEST.md](HOW_TO_TEST.md) for detailed testing instructions.
 
